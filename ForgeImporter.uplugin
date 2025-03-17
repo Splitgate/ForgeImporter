@@ -1,0 +1,29 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1",
+	"FriendlyName": "Forge Map Importer",
+	"Description": "Forge editor mode to import Splitgate 1 Forge JSON into the current level.",
+	"Category": "Splitgate",
+	"CreatedBy": "Adam",
+	"CreatedByURL": "https://twitter.com/PortalWars2",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "https://github.com/Splitgate/ForgeImporter/issues",
+	"CanContainContent": true,
+	"IsBetaVersion": false,
+	"IsExperimentalVersion": false,
+	"Installed": false,
+	"Modules": [
+		{
+			"name": "ForgeRuntime",
+			"type": "Runtime",
+			"loadingPhase": "Default"
+		},
+		{
+			"Name": "ForgeImporter",
+			"Type": "Editor",
+			"LoadingPhase": "Default"
+		}
+	]
+}
