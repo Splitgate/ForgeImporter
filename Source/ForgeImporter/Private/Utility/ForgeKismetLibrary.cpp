@@ -13,6 +13,10 @@
 #include "Factories/BlueprintFactory.h"
 #include "AssetToolsModule.h"
 
+#if (ENGINE_MAJOR_VERSION >= 5) // UE5 requires package save arguments
+	#include "UObject/SavePackage.h"
+#endif
+
 void UForgeKismetLibrary::Ed_CreateForgeActor(const FString& Name, const FString& Path, UStaticMesh* NewMesh)
 {
 	UBlueprintFactory* BlueprintFac = NewObject<UBlueprintFactory>(GetTransientPackage());
@@ -50,7 +54,20 @@ void UForgeKismetLibrary::Ed_CreateForgeActor(const FString& Name, const FString
 		AForgeStaticMeshInteractable* CDO = Cast<AForgeStaticMeshInteractable>(NewAsset->GeneratedClass->ClassDefaultObject);
 		CDO->UpdateForgeMesh(NewMesh);
 
-		UPackage::Save(NewPackage, NewAsset, RF_Public | RF_Standalone, *FPackageName::LongPackageNameToFilename(PackageName, FPackageName::GetAssetPackageExtension()));
+#if (ENGINE_MAJOR_VERSION >= 5) // UE5 requires package save arguments
+		FSavePackageArgs SaveArgs = FSavePackageArgs();
+		SaveArgs.SaveFlags = RF_Public | RF_Standalone;
+#endif
+
+		UPackage::Save(NewPackage, NewAsset,
+#if (ENGINE_MAJOR_VERSION < 5) // UE4 requires package flags
+			RF_Public | RF_Standalone,
+#endif
+			*FPackageName::LongPackageNameToFilename(PackageName, FPackageName::GetAssetPackageExtension()),
+#if (ENGINE_MAJOR_VERSION >= 5) // UE5 requires save arguments
+			SaveArgs
+#endif
+		);
 
 		//TArray<UObject*> Objects;
 		//Objects.Add(NewAsset);

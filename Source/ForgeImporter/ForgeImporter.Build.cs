@@ -23,6 +23,9 @@ public class ForgeImporter : ModuleRules
 				"Slate",
 				"SlateCore",
 				"UnrealEd",
+				#if UE_5_0_OR_LATER
+					"EditorFramework",
+				#endif
 				"LevelEditor",
 				"ContentBrowser",
 				"AssetRegistry",
@@ -34,5 +37,6 @@ public class ForgeImporter : ModuleRules
 				"JsonUtilities",
 				"ForgeRuntime",
 			});
+
 	}
 }

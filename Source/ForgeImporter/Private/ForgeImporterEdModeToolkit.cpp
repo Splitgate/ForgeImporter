@@ -37,7 +37,11 @@ void FForgeImporterEdModeToolkit::Init(const TSharedPtr<IToolkitHost>& InitToolk
 		DetailsViewArgs.bUpdatesFromSelection = false;
 		DetailsViewArgs.bShowOptions = false;
 		DetailsViewArgs.bShowModifiedPropertiesOption = false;
+#if (ENGINE_MAJOR_VERSION < 5)
 		DetailsViewArgs.bShowActorLabel = false;
+#else
+		DetailsViewArgs.bShowObjectLabel = false;
+#endif
 		DetailsViewArgs.bCustomNameAreaLocation = true;
 		DetailsViewArgs.bCustomFilterAreaLocation = true;
 		DetailsViewArgs.NameAreaSettings = FDetailsViewArgs::HideNameArea;
@@ -52,27 +56,41 @@ void FForgeImporterEdModeToolkit::Init(const TSharedPtr<IToolkitHost>& InitToolk
 
 	SAssignNew(ToolkitWidget, SBorder)
 		.HAlign(HAlign_Fill)
+#if (ENGINE_MAJOR_VERSION < 5)
 		.BorderImage(FEditorStyle::GetBrush("NoBorder"))
+#else
+		.BorderImage(FAppStyle::GetBrush("NoBorder"))
+#endif
 		.Padding(1)
 		[
 			SNew( SVerticalBox )
 			+ SVerticalBox::Slot()
 			.AutoHeight()
 			.HAlign( HAlign_Fill )
+			.VAlign( VAlign_Fill )
 			.Padding(1)
 			[
 				SNew(SExpandableArea)
 				.HeaderPadding(FMargin(2.0f))
 				.Padding(FMargin(10.f))
-				.BorderImage(FEditorStyle::Get().GetBrush("DetailsView.CategoryTop"))
 				.BorderBackgroundColor(FLinearColor(.6, .6, .6, 1.0f))
 				.BodyBorderBackgroundColor(FLinearColor::Transparent)
+#if (ENGINE_MAJOR_VERSION < 5)
+				.BorderImage(FEditorStyle::Get().GetBrush("DetailsView.CategoryTop"))
 				.AreaTitleFont(FEditorStyle::Get().GetFontStyle("EditorModesPanel.CategoryFontStyle"))
+#else
+				.BorderImage(FAppStyle::Get().GetBrush("DetailsView.CategoryTop"))
+				.AreaTitleFont(FAppStyle::Get().GetFontStyle("EditorModesPanel.CategoryFontStyle"))
+#endif
 				.BodyContent()
 				[
 					SNew(STextBlock)
 					.Text(LOCTEXT("ForgeToolMessage", "This tool allows you to import Splitgate 1 Forge maps via JSON save from https://github.com/Splitgate/SplitgateForgeBackup."))
+#if (ENGINE_MAJOR_VERSION < 5)
 					.Font(FEditorStyle::Get().GetFontStyle("EditorModesPanel.ToolDescriptionFont"))
+#else
+					.Font(FAppStyle::Get().GetFontStyle("EditorModesPanel.ToolDescriptionFont"))
+#endif
 					.AutoWrapText(true)
 				]
 				.HeaderContent()
@@ -80,7 +98,11 @@ void FForgeImporterEdModeToolkit::Init(const TSharedPtr<IToolkitHost>& InitToolk
 					SNew(STextBlock)
 					.Text(LOCTEXT("ForgeDisplay", "Forge Importer"))
 					.Justification(ETextJustify::Center)
+#if (ENGINE_MAJOR_VERSION < 5)
 					.Font(FEditorStyle::Get().GetFontStyle("EditorModesPanel.CategoryFontStyle"))
+#else
+					.Font(FAppStyle::Get().GetFontStyle("EditorModesPanel.CategoryFontStyle"))
+#endif
 				]
 			]
 
@@ -108,8 +130,13 @@ void FForgeImporterEdModeToolkit::Init(const TSharedPtr<IToolkitHost>& InitToolk
 				[
 					SNew(SButton)
 						.Text(LOCTEXT("ForgeToolExport", "Export"))
+#if (ENGINE_MAJOR_VERSION < 5)
 						.TextStyle(FEditorStyle::Get(), "LargeText")
 						.ButtonStyle(FEditorStyle::Get(), "FlatButton.Success")
+#else
+						.TextStyle(FAppStyle::Get(), "LargeText")
+						.ButtonStyle(FAppStyle::Get(), "FlatButton.Success")
+#endif
 						.ForegroundColor(FLinearColor::White)
 						.ContentPadding(FMargin(6, 6))
 						.IsEnabled(false)
@@ -124,9 +151,14 @@ void FForgeImporterEdModeToolkit::Init(const TSharedPtr<IToolkitHost>& InitToolk
 				.Padding(5, 0, 0, 0)
 				[
 					SNew(SButton)
-						.Text(LOCTEXT("ForgeToolCreate", "Load"))
+						.Text(LOCTEXT("ForgeToolCreate", "Import"))
+#if (ENGINE_MAJOR_VERSION < 5)
 						.TextStyle(FEditorStyle::Get(), "LargeText")
 						.ButtonStyle(FEditorStyle::Get(), "FlatButton.Success")
+#else
+						.TextStyle(FAppStyle::Get(), "LargeText")
+						.ButtonStyle(FAppStyle::Get(), "FlatButton.Success")
+#endif
 						.ForegroundColor(FLinearColor::White)
 						.ContentPadding(FMargin(6, 6))
 						.IsEnabled_Raw(EditorMode, &FForgeImporterEdMode::CanLoadMap)
