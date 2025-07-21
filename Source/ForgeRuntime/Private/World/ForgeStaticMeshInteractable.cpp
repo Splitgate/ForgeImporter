@@ -1,6 +1,7 @@
 // Copyright Adam (@portalwars2) 2025
 
 #include "World/ForgeStaticMeshInteractable.h"
+#include "Components/StaticMeshComponent.h"
 
 AForgeStaticMeshInteractable::AForgeStaticMeshInteractable()
 {
@@ -9,7 +10,7 @@ AForgeStaticMeshInteractable::AForgeStaticMeshInteractable()
 #endif
 
 	MeshComponent = CreateDefaultSubobject<UStaticMeshComponent>("MeshComponent");
-	RootComponent = MeshComponent;
+	SetRootComponent(RootComponent);
 }
 
 void AForgeStaticMeshInteractable::UpdateForgeMesh(UStaticMesh* NewMesh)

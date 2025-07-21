@@ -16,14 +16,14 @@ class FORGERUNTIME_API AForgeStaticMeshInteractable : public AActor, public IFor
 public:	
 	AForgeStaticMeshInteractable();
 
-	UPROPERTY(BlueprintReadOnly, EditDefaultsOnly)
+	UPROPERTY(BlueprintReadOnly, EditDefaultsOnly, Category = "Static Mesh")
 	UStaticMesh* ForgeMesh;
 
 	void UpdateForgeMesh(UStaticMesh* NewMesh);
 
 protected:
 
-	UPROPERTY(BlueprintReadOnly, EditDefaultsOnly)
+	UPROPERTY(BlueprintReadOnly, EditDefaultsOnly, Category = "Static Mesh")
 	UStaticMeshComponent* MeshComponent;
 
 	virtual void OnConstruction(const FTransform& Transform);

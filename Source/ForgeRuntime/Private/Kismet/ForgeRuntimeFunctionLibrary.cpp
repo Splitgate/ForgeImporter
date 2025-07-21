@@ -5,8 +5,10 @@
 
 UArrowComponent* UForgeRuntimeFunctionLibrary::GetPlayerStartArrow(APlayerStart* PlayerStart)
 {
+#if WITH_EDITORONLY_DATA
     if (PlayerStart)
         return PlayerStart->GetArrowComponent();
+#endif
 
     return nullptr;
 }
