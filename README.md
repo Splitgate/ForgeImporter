@@ -10,8 +10,6 @@ Currently this plugin only supports the following:
 * Unreal Engine 4.27.*
 * Unreal Engine 5.0 -> 5.6
 
-After the base has been finished on 4.26 more versions above such as unreal engine 5 will be added.
-
 ## Usage
 Get a Forge map you wish to use from either [SplitgateForgeBackup](https://github.com/Splitgate/SplitgateForgeBackup) or from [Capturing your own](#capturing-your-own-forge-map)
 
@@ -45,7 +43,7 @@ Ensure if you are using Fiddler Classic, you have *Stream* and *Decode* toggled 
 ```Ignore server certificate errors```
 
 #### **Step Three:** 
-In game go to Forge and download the map code you want (ideally your own) and await for any requests similar to ```https://splitgate.accelbyte.io/ugc/v1/public/namespaces/splitgate/maps/sharecodes/XXX-XXX-XXX``` the data this request responds with contains the forge data that you will use.
+In game go to Forge and download the map code you want (ideally your own) and await for any requests similar to ```https://splitgate.accelbyte.io/ugc/v1/public/namespaces/splitgate/maps/sharecodes/XXX-XXX-XXX``` the data this request responds with contains the forge data that you will use, simply save the response body to a json file and then it will be ready to be loaded into UE.
 
 ## Current Problems
 
