@@ -6,7 +6,7 @@
 #include "UObject/Interface.h"
 #include "ForgeInterface.generated.h"
 
-UINTERFACE(MinimalAPI)
+UINTERFACE(MinimalAPI, Blueprintable)
 class UForgeInterface : public UInterface
 {
 	GENERATED_BODY()
@@ -20,4 +20,5 @@ class FORGERUNTIME_API IForgeInterface
 	GENERATED_BODY()
 
 public:
+
 };

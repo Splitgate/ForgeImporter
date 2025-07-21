@@ -34,7 +34,7 @@ void UForgeKismetLibrary::Ed_CreateForgeActor(const FString& Name, const FString
 
 	if (!AssetRegistryModule.Get().IsLoadingAssets())
 	{
-		FAssetData AssetData = AssetRegistryModule.Get().GetAssetByObjectPath(*IncomingPath);
+		FAssetData AssetData = AssetRegistryModule.Get().GetAssetByObjectPath(FSoftObjectPath(IncomingPath));
 		if (AssetData.IsValid())
 		{
 			// for this i dont want it making another as it may confuse me
@@ -51,7 +51,7 @@ void UForgeKismetLibrary::Ed_CreateForgeActor(const FString& Name, const FString
 		UBlueprint* NewAsset = (UBlueprint*)AssetTools.CreateAsset(AssetName, Path, BlueprintFac->GetSupportedClass(), BlueprintFac);
 		if (!NewAsset) return;
 
-		AForgeStaticMeshInteractable* CDO = Cast<AForgeStaticMeshInteractable>(NewAsset->GeneratedClass->ClassDefaultObject);
+		AForgeStaticMeshInteractable* CDO = Cast<AForgeStaticMeshInteractable>(NewAsset->GeneratedClass->GetDefaultObject());
 		CDO->UpdateForgeMesh(NewMesh);
 
 #if (ENGINE_MAJOR_VERSION >= 5) // UE5 requires package save arguments
@@ -114,8 +114,8 @@ UClass* UForgeKismetLibrary::GetGeneratedClass(UBlueprint* BlueprintObject)
 
 UObject* UForgeKismetLibrary::GetDefaultObject(UClass* Class)
 {
-	if (Class && Class->ClassDefaultObject)
-		Class->ClassDefaultObject;
+	if (Class)
+		return Class->GetDefaultObject();
 
 	return nullptr;
 }

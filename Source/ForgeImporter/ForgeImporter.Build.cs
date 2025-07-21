@@ -33,6 +33,7 @@ public class ForgeImporter : ModuleRules
 				"EditorStyle",
 				"PropertyEditor",
 				"DesktopPlatform",
+				"DeveloperSettings",
 				"Json",
 				"JsonUtilities",
 				"ForgeRuntime",

@@ -45,6 +45,14 @@ struct FInteractableSave
 		id = 0;
 		transform = FTransform();
 	}
+
+	friend FArchive& operator<<(FArchive& Ar, FInteractableSave& ObjectToSerialize)
+	{
+		Ar << ObjectToSerialize.id;
+		Ar << ObjectToSerialize.transform;
+
+		return Ar;
+	}
 };
 
 USTRUCT()
@@ -77,6 +85,18 @@ struct FForgeMapData
 		sharingCode = TEXT("");
 		name = TEXT("");
 		displayName = TEXT("");
+	}
+
+	friend FArchive& operator<<(FArchive& Ar, FForgeMapData& ObjectToSerialize) 
+	{
+		Ar << ObjectToSerialize.mapID;
+		Ar << ObjectToSerialize.timeStamp;
+		Ar << ObjectToSerialize.sharingCode;
+		Ar << ObjectToSerialize.name;
+		Ar << ObjectToSerialize.displayName;
+		Ar << ObjectToSerialize.interactablesSaveData;
+
+		return Ar;
 	}
 };
 

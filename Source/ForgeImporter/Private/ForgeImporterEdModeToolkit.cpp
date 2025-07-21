@@ -139,12 +139,12 @@ void FForgeImporterEdModeToolkit::Init(const TSharedPtr<IToolkitHost>& InitToolk
 #endif
 						.ForegroundColor(FLinearColor::White)
 						.ContentPadding(FMargin(6, 6))
-						.IsEnabled(false)
+						.IsEnabled_Raw(EditorMode, &FForgeImporterEdMode::CanExportMap)
 						.ToolTip(SNew(SToolTip)
 							.Text(LOCTEXT("ForgeToolExport_Tip", "Exporting Not Added")))
 						.HAlign(HAlign_Center)
 						.VAlign(VAlign_Center)
-						//.OnClicked_Static(&Locals::OnLoadButtonClick);
+						.OnClicked_Raw(EditorMode, &FForgeImporterEdMode::AttemptExportMap)
 				]
 
 				+ SHorizontalBox::Slot()

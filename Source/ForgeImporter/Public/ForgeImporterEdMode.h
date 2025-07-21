@@ -16,8 +16,14 @@ class FForgeImporterEdMode : public FEdMode
 public:
 	const static FEditorModeID EM_ForgeImporterEdModeId;
 public:
+
+#if (ENGINE_MAJOR_VERSION < 5)
 	UForgeImportEditorObject* UIImportSettings;
 	UForgeExportEditorObject* UIExportSettings;
+#else
+	TObjectPtr<UForgeImportEditorObject> UIImportSettings;
+	TObjectPtr<UForgeExportEditorObject> UIExportSettings;
+#endif
 
 	FForgeImporterEdMode();
 	virtual ~FForgeImporterEdMode();
@@ -39,7 +45,19 @@ public:
 	// Functions
 	bool IsValidMap(TSharedPtr<FJsonObject> GiftedJSON) const;
 
+	// Return the datatable of valid interactables
+	UDataTable* GetInteractables() const;
+
+	// -1 if not found else valid
+	int FindForgeInteractable(UObject* ClassOrMesh) const;
+
+	// -1 if not found else found
+	int GetInteractableId(UObject* ClassOrMesh) const;
+
 	// Bindings
 	bool CanLoadMap() const;
+	bool CanExportMap() const;
+
 	FReply AttemptLoadMap();
+	FReply AttemptExportMap();
 };

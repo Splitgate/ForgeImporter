@@ -34,6 +34,13 @@ enum class EForgeMap : uint8
 	Forge_Island		= 1		UMETA(DisplayName="Wet Ocean")
 };
 
+UENUM(BlueprintType)
+enum class EForgeExportType : uint8
+{
+	JSON				= 0		UMETA(DisplayName = "JSON"),
+	Forge				= 1		UMETA(DisplayName = "Forge Format")
+};
+
 /**
  * Export settings for Forge
  */
@@ -48,11 +55,15 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category="Export Settings", transient)
 	FString DisplayName = TEXT("My Forge Map");
 
-	// Map we are building off of (others work but these are the only 'legal' ones)
+	// Map we are building off of (All others work but these are the only 'legal' ones)
 	UPROPERTY(EditDefaultsOnly, Category = "Export Settings", transient)
 	EForgeMap Map;
 
 	// Ignore
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Export Settings", transient)
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Export Settings", DisplayName = "Internal Map Name", transient)
 	FString BaseMap = TEXT("Forge_Island");
+
+	// Type to export this map to.
+	UPROPERTY(EditDefaultsOnly, Category = "Export Settings", DisplayName = "Export Format", transient)
+	EForgeExportType ExportType;
 };
