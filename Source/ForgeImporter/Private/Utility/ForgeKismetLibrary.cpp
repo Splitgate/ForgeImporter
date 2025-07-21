@@ -34,7 +34,13 @@ void UForgeKismetLibrary::Ed_CreateForgeActor(const FString& Name, const FString
 
 	if (!AssetRegistryModule.Get().IsLoadingAssets())
 	{
-		FAssetData AssetData = AssetRegistryModule.Get().GetAssetByObjectPath(FSoftObjectPath(IncomingPath));
+		FAssetData AssetData = AssetRegistryModule.Get().GetAssetByObjectPath(
+		#if (ENGINE_MAJOR_VERSION >= 5) // UE5 wants this as a softobjectpath, UE4 doesnt have a function with these parameters
+			FSoftObjectPath(IncomingPath)
+		#else
+			FName(IncomingPath)
+		#endif
+		);
 		if (AssetData.IsValid())
 		{
 			// for this i dont want it making another as it may confuse me
@@ -63,15 +69,11 @@ void UForgeKismetLibrary::Ed_CreateForgeActor(const FString& Name, const FString
 #if (ENGINE_MAJOR_VERSION < 5) // UE4 requires package flags
 			RF_Public | RF_Standalone,
 #endif
-			*FPackageName::LongPackageNameToFilename(PackageName, FPackageName::GetAssetPackageExtension()),
+			*FPackageName::LongPackageNameToFilename(PackageName, FPackageName::GetAssetPackageExtension())
 #if (ENGINE_MAJOR_VERSION >= 5) // UE5 requires save arguments
-			SaveArgs
+			,SaveArgs
 #endif
 		);
-
-		//TArray<UObject*> Objects;
-		//Objects.Add(NewAsset);
-		//ContentBrowserModule.Get().SyncBrowserToAssets(Objects);
 
 		NewAsset->OnCompiled();
 	}

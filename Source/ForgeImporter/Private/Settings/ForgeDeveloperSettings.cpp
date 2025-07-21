@@ -11,7 +11,8 @@ UForgeDeveloperSettings::UForgeDeveloperSettings(const FObjectInitializer& Objec
 	SectionName = TEXT("Forge Importer");
 
 	InteractablesTable = LoadObject<UDataTable>(GEngine, TEXT("DataTable'/ForgeImporter/ForgeInteractables.ForgeInteractables'"));
-	ExportPath = FDirectoryPath(FPaths::ProjectDir() + TEXT("ForgeMaps"));
+	ExportPath = FDirectoryPath();
+	ExportPath.Path = (FPaths::ProjectDir() + TEXT("ForgeMaps"));
 }
 
 #if WITH_EDITOR
