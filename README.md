@@ -49,9 +49,6 @@ In game go to Forge and download the map code you want (ideally your own) and aw
 ## Current Problems
 
 Currently this tool is missing a few things when importing the maps that being the following list. (Games actual path is /Game not /ForgeImporter)
-
-The Export feature will be added at a later date.
-
 ```
 /ForgeImporter/Blueprints/GameModes/Forge/Interactables/GameModes/CTF/InteractableFlagCaptureZone_Alpha_BP
 /ForgeImporter/Blueprints/GameModes/Forge/Interactables/GameModes/CTF/InteractableFlagCaptureZone_Bravo_BP
