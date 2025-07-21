@@ -7,7 +7,8 @@ This is a tool to help people load their forge maps into unreal engine with a ba
 Currently this plugin only supports the following:
 
 * Unreal Engine 4.26.*
-* (Possibly) Unreal Engine 4.27.*
+* Unreal Engine 4.27.*
+* Unreal Engine 5.0 -> 5.6
 
 After the base has been finished on 4.26 more versions above such as unreal engine 5 will be added.
 
