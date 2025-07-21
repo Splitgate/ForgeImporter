@@ -1,7 +1,7 @@
 {
 	"FileVersion": 3,
 	"Version": 1,
-	"VersionName": "1",
+	"VersionName": "1.1.0",
 	"FriendlyName": "Forge Map Importer",
 	"Description": "Forge editor mode to import Splitgate 1 Forge JSON into the current level.",
 	"Category": "Splitgate",
@@ -16,9 +16,9 @@
 	"Installed": false,
 	"Modules": [
 		{
-			"name": "ForgeRuntime",
-			"type": "Runtime",
-			"loadingPhase": "Default"
+			"Name": "ForgeRuntime",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
 		},
 		{
 			"Name": "ForgeImporter",
